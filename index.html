@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Secret Life of Women: What She's Thinking, But Never Tells You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #1a237e 50%, #0d1117 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,215,0,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero .hook {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #ffd700;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1a237e;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(45deg, #ffed4e, #ffd700);
+        }
+        
+        .price-highlight {
+            display: block;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #cccccc;
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-dark {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+        
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .problem-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4444;
+            backdrop-filter: blur(10px);
+        }
+        
+        .problem-item h3 {
+            color: #ff6666;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .problem-item p {
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+        
+        /* Solution Preview */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .solution-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(10px);
+        }
+        
+        .solution-item h3 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .solution-item p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+        
+        /* Benefits Section */
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+        
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-top: 5px;
+        }
+        
+        .benefit-text {
+            flex: 1;
+        }
+        
+        .benefit-text h4 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .benefit-text p {
+            color: #cccccc;
+        }
+        
+        /* Credibility Section */
+        .credibility {
+            text-align: center;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 60px 30px;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+        
+        .credibility-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            color: #ffd700;
+            font-weight: 900;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Objections Section */
+        .objection-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .objection-item h4 {
+            color: #ff6666;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .objection-item p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+        
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(45deg, #1a237e, #0d1117);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+            border: 2px solid #ffd700;
+        }
+        
+        .guarantee h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .guarantee p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 80px 30px;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+        
+        .urgency {
+            color: #ff6666;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+                padding: 40px 0;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+            
+            .credibility-stats {
+                gap: 30px;
+            }
+            
+            .problem-grid,
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hook">The Secrets Women Don't Want You to Know</div>
+                <h1>The Secret Life of Women</h1>
+                <p class="subtitle">What She's Thinking, But Never Tells You</p>
+                <a href="#" class="cta-button" onclick="window.open('YOUR_GUMROAD_LINK_HERE', '_blank')">
+                    Get Instant Access Now
+                    <span class="price-highlight">Only $19 - Digital Download</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>Tired of Playing Guessing Games?</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h3>🤔 Mixed Signals Drive You Crazy</h3>
+                    <p>She says one thing but her actions say another. You're left wondering what she actually means and feeling like you're walking on eggshells.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>😤 "I'm Fine" But She's Clearly Not</h3>
+                    <p>You know something's wrong, but she won't tell you what. You're stuck trying to decode her mood while she expects you to just "know."</p>
+                </div>
+                <div class="problem-item">
+                    <h3>💔 Rejection Without Explanation</h3>
+                    <p>Things seemed to be going well, then suddenly she's distant. You have no idea what changed or what you did wrong.</p>
+                </div>
+                <div class="problem-item">
+                    <h3>🗣️ Speaking Different Languages</h3>
+                    <p>You feel like women communicate in code. Every conversation feels like a test you didn't study for, and you're failing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Preview -->
+    <section class="section">
+        <div class="container">
+            <h2>Finally Understand What She's Really Thinking</h2>
+            <div class="solution-grid">
+                <div class="solution-item">
+                    <h3>🔓 Decode Her Secret Language</h3>
+                    <p>Learn what she's actually communicating when she speaks in hints, uses silence, or gives you "looks." No more guesswork.</p>
+                </div>
+                <div class="solution-item">
+                    <h3>🧠 Read Her Mind Through Actions</h3>
+                    <p>Discover the hidden patterns in her behavior that reveal her true thoughts, feelings, and desires—even when she won't say them out loud.</p>
+                </div>
+                <div class="solution-item">
+                    <h3>💡 Understand Her Tests</h3>
+                    <p>Find out why women test men, what they're actually testing for, and how to pass with flying colors every single time.</p>
+                </div>
+                <div class="solution-item">
+                    <h3>❤️ Know What She Really Wants</h3>
+                    <p>Uncover the emotional needs she craves but feels too vulnerable to ask for directly—and how to fulfill them naturally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="credibility">
+                <h2>Based on Real Psychology, Not Pickup Theory</h2>
+                <p style="font-size: 1.2rem; color: #e0e0e0; margin-bottom: 20px;">This isn't another "dating tips" book filled with manipulation tactics. This is genuine insight into female psychology, compiled from years of research and real conversations.</p>
+                
+                <div class="credibility-stats">
+                    <div class="stat">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Pages of Insights</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">9</span>
+                        <span class="stat-label">Comprehensive Chapters</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Real Examples</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2>What You'll Gain From This Knowledge</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-text">
+                        <h4>Stop Misreading Signals</h4>
+                        <p>Know exactly when she's interested, when she's testing you, and when she's pulling away—and why.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💪</div>
+                    <div class="benefit-text">
+                        <h4>Build Unshakeable Confidence</h4>
+                        <p>Understanding her psychology eliminates anxiety and uncertainty, making you naturally more attractive.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔥</div>
+                    <div class="benefit-text">
+                        <h4>Deeper Connections</h4>
+                        <p>When you understand what she needs emotionally, you can create the kind of bond most men never achieve.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏆</div>
+                    <div class="benefit-text">
+                        <h4>Unfair Advantage</h4>
+                        <p>While other men stay confused, you'll have insider knowledge that puts you ahead of 99% of the competition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objections Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>But What If...</h2>
+            
+            <div class="objection-item">
+                <h4>"This sounds too good to be true"</h4>
+                <p><strong>I get it.</strong> You've probably tried other relationship advice that didn't work. The difference here is this isn't theory—it's based on what women actually think and feel, not what some dating coach assumes they think.</p>
+            </div>
+            
+            <div class="objection-item">
+                <h4>"I don't want to manipulate women"</h4>
+                <p><strong>Good—neither do I.</strong> This book is about understanding, not manipulation. When you truly understand someone, you can build genuine connections based on honesty and mutual respect.</p>
+            </div>
+            
+            <div class="objection-item">
+                <h4>"What if it doesn't work for me?"</h4>
+                <p><strong>That's why there's a guarantee.</strong> If this doesn't give you new insights into women's psychology within 30 days, get your money back. No questions asked.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="section">
+        <div class="container">
+            <div class="guarantee">
+                <h3>🛡️ 30-Day Money-Back Guarantee</h3>
+                <p>If you don't gain new insights into women's psychology, or if you're not completely satisfied for any reason, get a full refund within 30 days. No questions asked.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop Wondering. Start Knowing.</h2>
+            <p style="font-size: 1.3rem; color: #e0e0e0; margin-bottom: 30px;">The woman in your life is telling you everything—if you know how to listen.</p>
+            <div class="urgency">Don't spend another day playing guessing games</div>
+            <a href="#" class="cta-button" onclick="window.open('YOUR_GUMROAD_LINK_HERE', '_blank')">
+                Get "The Secret Life of Women" Now
+                <span class="price-highlight">Instant Download - $19</span>
+            </a>
+            <p style="margin-top: 20px; color: #999;">✓ Instant Download ✓ Works on All Devices ✓ 30-Day Guarantee</p>
+        </div>
+    </section>
+</body>
+</html>
